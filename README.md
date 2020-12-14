@@ -1,2 +1,3 @@
-# estudo-golang
-API Com Golang + Gorilla Mux + Postgres
+# Estudo Go
+
+API Com Go + Gorilla Mux + Postgres
