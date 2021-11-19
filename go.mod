@@ -1,8 +1,8 @@
 module goapi
 
-go 1.16
+go 1.17
 
 require (
 	github.com/gorilla/mux v1.8.0
-	github.com/sirupsen/logrus v1.8.1
+	github.com/rs/zerolog v1.26.0
 )

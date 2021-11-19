@@ -1,28 +1,22 @@
 package app
 
 import (
+	"goapi/internal/services/ping"
+	"goapi/internal/services/user"
+	"goapi/pkg/webapplication"
 	"net/http"
 
-	"goapi/internal/server"
-	"goapi/pkg/ping"
-	"goapi/pkg/user"
-
-	"github.com/gorilla/mux"
-	logrus "github.com/sirupsen/logrus"
+	"github.com/rs/zerolog/log"
 )
 
 func Start() {
-	logrus.Info("Starting service...")
-
-	r := mux.NewRouter().StrictSlash(true)
-
-	s := &server.Server{
-		Router: r,
-		Logger: *logrus.Logger,
+	app, err := webapplication.New()
+	if err != nil {
+		log.Fatal().Err(err).Msg("Error on start web application")
 	}
 
-	ping.New(s)
-	user.New(s)
+	ping.New(app)
+	user.New(app)
 
-	logrus.Fatal(http.ListenAndServe(":8000", r))
+	log.Fatal().Err(http.ListenAndServe(":8000", app.Router)).Msg("Error on listen and serve")
 }

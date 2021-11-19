@@ -2,18 +2,17 @@ package ping
 
 import (
 	"fmt"
-	"log"
+	"goapi/pkg/logger"
+	"goapi/pkg/webapplication"
 	"net/http"
-
-	"goapi/internal/server"
 )
 
 func getPing(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "ping")
+	_, _ = fmt.Fprintf(w, "ping")
 }
 
-func New(s *server.Server) {
-	log.Println("Ping wireup")
+func New(s *webapplication.App) {
+	logger.Info("Ping wireup")
 	s.Router.HandleFunc("/", getPing).Methods("GET")
 	s.Router.HandleFunc("/ping", getPing).Methods("GET")
 }
