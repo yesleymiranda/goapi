@@ -1,8 +1,8 @@
 package app
 
 import (
-	"goapi/internal/services/ping"
-	"goapi/internal/services/user"
+	"goapi/api/serve/ping"
+	"goapi/api/serve/user"
 	"goapi/pkg/webapplication"
 	"net/http"
 
