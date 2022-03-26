@@ -1,7 +1,14 @@
 package main
 
-import app "goapi/cmd"
+import (
+	"errors"
+	"goapi/app"
+	"net/http"
+)
 
 func main() {
-	app.Start()
+	err := app.Run()
+	if err != nil && !errors.Is(err, http.ErrServerClosed) {
+		panic(err)
+	}
 }
