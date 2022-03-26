@@ -1,6 +1,8 @@
 package app
 
 import (
+	"goapi/app/user"
+
 	"github.com/yesleymiranda/go-toolkit/webapplication"
 )
 
@@ -12,6 +14,8 @@ func Run() error {
 		WithPing: true,
 	})
 	app.Initialize()
+
+	user.New(app)
 
 	return app.ListenAndServe()
 }
